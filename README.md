@@ -1,9 +1,6 @@
 # bind_dns
-'''js
+'''
 //file db.192.gondez
-;
-; BIND reverse data file for local loopback interface
-;
 $TTL	604800
 @	IN	SOA	gondez.net. root.gondez.net. (
 			      1		; Serial
@@ -45,7 +42,7 @@ zone "gondez.net" {
         type master;
         file "/etc/bind/db.gondez";
 };
-------------------------------------------
+
 //file named.conf.local
 options {
 	directory "/var/cache/bind";
@@ -75,7 +72,7 @@ options {
 	auth-nxdomain no;
 	listen-on-v6 { any; };
 };
----------------------------------------------
+
 '''
 //mikrotik NAT redirect to DNS Server
  chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
