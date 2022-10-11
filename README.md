@@ -7,7 +7,8 @@
 						 Retry 2419200 ; 
 						 Expire 604800 ) ; 
 						 Negative Cache TTL ; 
-@ IN NS gondez.net. 100 IN PTR gondez.net.
+@ 	IN 	NS 	gondez.net. 
+100 	IN 	PTR 	gondez.net.
 ```
 **file db.gondez**
 ```
