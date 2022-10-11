@@ -1,4 +1,5 @@
 # bind_dns
+'''js
 //file db.192.gondez
 ;
 ; BIND reverse data file for local loopback interface
@@ -75,6 +76,7 @@ options {
 	listen-on-v6 { any; };
 };
 ---------------------------------------------
+'''
 //mikrotik NAT redirect to DNS Server
  chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
       protocol=udp src-address=!10.10.10.100 dst-port=53 log=no log-prefix="" 
