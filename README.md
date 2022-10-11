@@ -1,79 +1,67 @@
-# bind_dns
-'''
-//file db.192.gondez
-$TTL	604800
-@	IN	SOA	gondez.net. root.gondez.net. (
-			      1		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			 604800 )	; Negative Cache TTL
-;
-@	IN	NS	gondez.net.
-100	IN	PTR	gondez.net.
-----------------------------------------
-//file db.gondez
-;
-; BIND data file for local loopback interface
-;
-$TTL	604800
-@	IN	SOA	gondez.net. root.gondez.net. (
-			      2		; Serial
-			 604800		; Refresh
-			  86400		; Retry
-			2419200		; Expire
-			 604800 )	; Negative Cache TTL
-;
-@	IN	NS	gondez.net.
-@	IN	A	10.10.10.100
-www	IN	A	10.10.10.100
-ftp	IN	A	10.10.10.100
-mail	IN	A	10.10.10.100
-cloud	IN	A	10.10.10.100
-home	IN	A	10.10.10.100
-------------------------------------------
-//file named.conf.local
-zone "10.10.10.in-addr.arpa" {
-        type master;
-        file "/etc/bind/db.192.gondez";
+# DNS forwarder 
+
+ **file db.192.gondez** 
+ ```
+ $TTL 604800 @ IN SOA gondez.net. root.gondez.net. ( 1 ; Serial 604800 ; 
+						 Refresh 86400 ; 
+						 Retry 2419200 ; 
+						 Expire 604800 ) ; 
+						 Negative Cache TTL ; 
+@ IN NS gondez.net. 100 IN PTR gondez.net.
+```
+**file db.gondez**
+```
+; 
+; 
+BIND data file for local loopback interface ; 
+$TTL 604800 @ IN SOA gondez.net. root.gondez.net. ( 2 ; Serial 604800 ; 
+							Refresh 86400 ; 
+							Retry 2419200 ; 
+							Expire 604800 ) ; 
+							Negative Cache TTL ; 
+@ 			IN 		NS gondez.net. 
+@ 			IN 		A 		10.10.10.100 
+www 		IN 		A 		10.10.10.100 
+ftp 			IN 		A 		10.10.10.100 
+mail 		IN 		A 		10.10.10.100 
+cloud 		IN 		A 		10.10.10.100 
+home 		IN 		A 		10.10.10.100
+```
+**file named.conf.local**
+```
+zone "10.10.10.in-addr.arpa" { type master; 
+		file "/etc/bind/db.192.gondez"; };
+zone "gondez.net" { type master; 
+		file "/etc/bind/db.gondez"; };
+```
+**file named.conf.local**
+options { directory "/var/cache/bind";
+```
+// If there is a firewall between you and nameservers you want
+// to talk to, you may need to fix the firewall to allow multiple
+// ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+// If your ISP provided one or more IP addresses for stable 
+// nameservers, you probably want to use them as forwarders.  
+// Uncomment the following block, and insert the addresses replacing 
+// the all-0's placeholder.
+
+forwarders {
+	8.8.8.8;
+	8.8.4.4;
 };
 
-zone "gondez.net" {
-        type master;
-        file "/etc/bind/db.gondez";
-};
-
-//file named.conf.local
-options {
-	directory "/var/cache/bind";
-
-	// If there is a firewall between you and nameservers you want
-	// to talk to, you may need to fix the firewall to allow multiple
-	// ports to talk.  See http://www.kb.cert.org/vuls/id/800113
-
-	// If your ISP provided one or more IP addresses for stable 
-	// nameservers, you probably want to use them as forwarders.  
-	// Uncomment the following block, and insert the addresses replacing 
-	// the all-0's placeholder.
-
-	forwarders {
-		8.8.8.8;
-		8.8.4.4;
-	};
-
-	//========================================================================
-	// If BIND logs error messages about the root key being expired,
-	// you will need to update your keys.  See https://www.isc.org/bind-keys
-	//========================================================================
-	dnssec-validation no;
-	allow-query { any; };
-	allow-query-cache { any; };
-	allow-recursion { any; };
-	auth-nxdomain no;
-	listen-on-v6 { any; };
-};
-
-'''
+//========================================================================
+// If BIND logs error messages about the root key being expired,
+// you will need to update your keys.  See https://www.isc.org/bind-keys
+//========================================================================
+dnssec-validation no;
+allow-query { any; };
+allow-query-cache { any; };
+allow-recursion { any; };
+auth-nxdomain no;
+listen-on-v6 { any; };
+```
 //mikrotik NAT redirect to DNS Server
  chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
       protocol=udp src-address=!10.10.10.100 dst-port=53 log=no log-prefix="" 
