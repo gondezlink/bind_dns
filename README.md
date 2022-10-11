@@ -68,16 +68,16 @@ listen-on-v6 { any; };
 chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
       protocol=udp src-address=!10.10.10.100 dst-port=53 log=no log-prefix="" 
 
- 1    chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
+ chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
       protocol=tcp src-address=!10.10.10.100 dst-port=53 log=no log-prefix="" 
 
- 2    chain=srcnat action=masquerade to-ports=53 protocol=udp 
+ chain=srcnat action=masquerade to-ports=53 protocol=udp 
       src-address=10.10.10.0/24 dst-port=53 log=no log-prefix="" 
 
- 3    chain=srcnat action=masquerade to-ports=53 protocol=tcp 
+ chain=srcnat action=masquerade to-ports=53 protocol=tcp 
       src-address=10.10.10.0/24 dst-port=53 log=no log-prefix="" 
 
- 4    chain=srcnat action=masquerade out-interface=ether1 log=no log-prefix="" 
+ chain=srcnat action=masquerade out-interface=ether1 log=no log-prefix="" 
  ```
 
  ![image](https://user-images.githubusercontent.com/34673946/194979932-ba7d44c6-916b-470c-86b4-1d73109c05e0.png)
