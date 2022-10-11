@@ -62,8 +62,9 @@ allow-recursion { any; };
 auth-nxdomain no;
 listen-on-v6 { any; };
 ```
-//mikrotik NAT redirect to DNS Server
- chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
+***mikrotik NAT redirect to DNS Server***
+```
+chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
       protocol=udp src-address=!10.10.10.100 dst-port=53 log=no log-prefix="" 
 
  1    chain=dstnat action=dst-nat to-addresses=10.10.10.100 to-ports=53 
@@ -76,7 +77,8 @@ listen-on-v6 { any; };
       src-address=10.10.10.0/24 dst-port=53 log=no log-prefix="" 
 
  4    chain=srcnat action=masquerade out-interface=ether1 log=no log-prefix="" 
- ------------------------------------------
+ ```
+
  ![image](https://user-images.githubusercontent.com/34673946/194979932-ba7d44c6-916b-470c-86b4-1d73109c05e0.png)
  ![image](https://user-images.githubusercontent.com/34673946/194979955-75edd3f6-e9cd-4ab4-9e2d-9169613b143a.png)
 
