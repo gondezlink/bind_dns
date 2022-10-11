@@ -1,6 +1,6 @@
-# DNS forwarder 
-
- **file db.192.gondez** 
+# DNS forwarder and mikrotik forward DNS 
+**Example configuration DNS Server**
+**file db.192.gondez** 
  ```
  $TTL 604800 @ IN SOA gondez.net. root.gondez.net. ( 1 ; Serial 604800 ; 
 						 Refresh 86400 ; 
