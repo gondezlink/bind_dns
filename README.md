@@ -20,7 +20,7 @@ $TTL 604800 @ IN SOA gondez.net. root.gondez.net. ( 2 ; Serial 604800 ;
 							Retry 2419200 ; 
 							Expire 604800 ) ; 
 							Negative Cache TTL ; 
-@ 			IN 		NS gondez.net. 
+@ 			IN 		NS 		gondez.net. 
 @ 			IN 		A 		10.10.10.100 
 www 			IN 		A 		10.10.10.100 
 ftp 			IN 		A 		10.10.10.100 
