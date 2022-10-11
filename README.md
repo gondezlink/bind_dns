@@ -22,11 +22,11 @@ $TTL 604800 @ IN SOA gondez.net. root.gondez.net. ( 2 ; Serial 604800 ;
 							Negative Cache TTL ; 
 @ 			IN 		NS gondez.net. 
 @ 			IN 		A 		10.10.10.100 
-www 		IN 		A 		10.10.10.100 
+www 			IN 		A 		10.10.10.100 
 ftp 			IN 		A 		10.10.10.100 
-mail 		IN 		A 		10.10.10.100 
-cloud 		IN 		A 		10.10.10.100 
-home 		IN 		A 		10.10.10.100
+mail 			IN 		MX 		10.10.10.100 
+cloud 			IN 		A 		10.10.10.100 
+home 			IN 		A 		10.10.10.100
 ```
 **file named.conf.local**
 ```
