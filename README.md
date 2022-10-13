@@ -1,6 +1,6 @@
 # DNS forwarder and mikrotik forward DNS 
 **Example configuration DNS Server**
-**file forward db.192.gondez** 
+**file forward /etc/bind/db.192.gondez** 
  ```
  $TTL 604800 @ IN SOA gondez.net. root.gondez.net. ( 1 ; Serial 604800 ; 
 						 Refresh 86400 ; 
@@ -10,7 +10,7 @@
 @ 	IN 	NS 	gondez.net. 
 100 	IN 	PTR 	gondez.net.
 ```
-**file reverse db.gondez**
+**file reverse /etc/bind/db.gondez**
 ```
 ; 
 ; 
@@ -28,14 +28,14 @@ mail 			IN 		MX 		10.10.10.100
 cloud 			IN 		A 		10.10.10.100 
 home 			IN 		A 		10.10.10.100
 ```
-**file zone named.conf.local**
+**file zone /etc/bind named.conf.local**
 ```
 zone "10.10.10.in-addr.arpa" { type master; 
 		file "/etc/bind/db.192.gondez"; };
 zone "gondez.net" { type master; 
 		file "/etc/bind/db.gondez"; };
 ```
-**file named.conf.local**
+**file /etc/bind/named.conf.options**
 ```
 options { directory "/var/cache/bind";
 
