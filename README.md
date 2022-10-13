@@ -36,8 +36,9 @@ zone "gondez.net" { type master;
 		file "/etc/bind/db.gondez"; };
 ```
 **file named.conf.local**
-options { directory "/var/cache/bind";
 ```
+options { directory "/var/cache/bind";
+
 // If there is a firewall between you and nameservers you want
 // to talk to, you may need to fix the firewall to allow multiple
 // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
