@@ -1,12 +1,12 @@
 # DNS forwarder and mikrotik forward DNS
 topology :
-ISP ---- router --- dns server
-      gw 10.10.10.1	|
-	   |		|
- 	   |	   ip 10.10.10.100/24
- 	   |
- 	 client 
- 	ip 10.10.10.0/24
+ISP ---- router --- dns server <br />
+-------gw 10.10.10.100 ----| \
+---------- | --------------|\
+-----------| ------ip 10.10.10.100/24 \
+-----------| --------------\
+---------client------------\
+ ------ip 10.10.10.0/24 ---\
 	
 **Example configuration DNS Server**
 **file forward /etc/bind/db.192.gondez** 
